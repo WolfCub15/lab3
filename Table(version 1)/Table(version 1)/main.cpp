@@ -32,5 +32,6 @@ int main() {
 	for (int i = 0; i < a.get_size(); i++) {
 		cout << a[i].get_name() << ' ' << a[i].get_val() << '\n';
 	}
+	cout << a.get_count() << ' ' << a.get_size() << '\n';
 	return 0;
 }
