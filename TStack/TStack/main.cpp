@@ -10,6 +10,7 @@ int main() {
 	for (int i = 0; !a.full(); i++) {
 		a.push(i + 1);
 	}
+	cout << a.front() << '\n';
 	cout << (a.full() ? "FULL\n" : "NOT FULL\n");
 	while (!a.empty()) {
 		cout << a.pop() << ' ';
