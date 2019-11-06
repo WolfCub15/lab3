@@ -74,12 +74,12 @@ inline Table<T>& Table<T>::operator=(const Table<T>& tmp) {
 template<class T>
 inline void Table<T>::push_back(const Line<T>& tmp) {
 	if (size == cnt) { //надо новый массив
-		Line<T> *new_mem = new Line<T>[size + 1];
+		Line<T> *new_mem = new Line<T>[2 * size];
 		for (int i = 0; i < size; i++) {
 			new_mem[i] = mem[i];
 		}
 		new_mem[size] = tmp;
-		size++;
+		size *= 2;
 		cnt++;
 		delete[] mem;
 		mem = new Line<T>[size];
@@ -95,7 +95,7 @@ inline void Table<T>::push_back(const Line<T>& tmp) {
 template<class T>
 inline void Table<T>::erase(const string & name) {
 	int pos = search_line(name);
-	cout << "POS = " << pos << '\n';
+	//cout << "POS = " << pos << '\n';
 	if (pos == -1) throw 1;
 	for (int i = pos + 1; i < this->cnt; i++) {
 		mem[i - 1] = mem[i];
