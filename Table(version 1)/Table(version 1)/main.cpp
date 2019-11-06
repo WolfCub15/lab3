@@ -1,17 +1,18 @@
 #include<iostream>
 #include<string>
+#include"Line.h"
 #include"Table.h"
 
 using namespace std;
 
 int main() {
-	Table<int> a(5);
+	Table<int> a(10);
 	for (int i = 0; i < a.get_size(); i++) {
 		cout << a[i].get_name() << ' ' << a[i].get_val() << '\n';
 	}
 	string kek = "d";
 	for (int i = 0; i < 10; i++) {
-		a.push_back({ kek, i + 1 });
+		a.push_back(Line<int>( kek, i + 1 ));
 		cout << a.get_count() << ' ' << a.get_size() << '\n';
 		kek += 'a' + i;
 	}
@@ -26,7 +27,7 @@ int main() {
 		cout << a[i].get_name() << ' ' << a[i].get_val() << '\n';
 	}
 	cout << a.search("dab") << '\n';
-	a.push_back({ "denis", 200 });
+	a.push_back(Line<int>("denis", 200));
 	cout << a.get_count() << ' ' << a.get_size() << '\n';
 	for (int i = 0; i < a.get_size(); i++) {
 		cout << a[i].get_name() << ' ' << a[i].get_val() << '\n';
