@@ -14,7 +14,7 @@ public:
 	~Table<T>();
 	Table<T>(const Table<T> & tmp);
 	Table<T> &operator=(const Table<T> & tmp);
-	void push_back(const Line<T> & tmp);
+	void push_back(Line<T> tmp);
 	void erase(const string & name);
 	T search(const string & name);
 	int search_line(const string & name);
@@ -72,23 +72,15 @@ inline Table<T>& Table<T>::operator=(const Table<T>& tmp) {
 }
 
 template<class T>
-inline void Table<T>::push_back(const Line<T>& tmp) {
-	if (size == cnt) { //надо новый массив
-		Line<T> *new_mem = new Line<T>[size + 1];
-		for (int i = 0; i < size; i++) {
-			new_mem[i] = mem[i];
-		}
-		new_mem[size] = tmp;
-		size++;
-		cnt++;
-		delete[] mem;
-		mem = new Line<T>[size];
-		for (int i = 0; i < size; i++) {
-			mem[i] = new_mem[i];
-		}
+inline void Table<T>::push_back(Line<T> tmp) {
+	string fi = tmp.get_name();
+	int pos = search_line(fi);
+	if (pos == -1) {
+		if (cnt == size) throw 1;
+		mem[cnt++] = tmp;
 	}
 	else {
-		mem[cnt++] = tmp;
+		mem[pos] = tmp;
 	}
 }
 
