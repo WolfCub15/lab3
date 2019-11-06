@@ -38,6 +38,9 @@ public:
 			cout << lex[i] << '\n';
 		}
 	}
+	Table<double> get_tab() {
+		return *(this->tab);
+	}
 	~TPolIZ();
 };
 

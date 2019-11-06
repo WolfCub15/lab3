@@ -10,6 +10,7 @@ int main() {
 	getline(cin, s);
 	TPolIZ lol(s);
 	lol.print_poliz();
-
+	cout << '\n';
+	cout << lol.get_tab();
 	return 0;
 }

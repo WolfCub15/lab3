@@ -37,7 +37,13 @@ void TPolIZ::right_bracket() {
 }
 
 void TPolIZ::operand(const string & p) {
-	tab->push_back(Line<double>(p));
+	if (p[0] >= '0' && p[0] <= '9') {//number
+		double number = atof(p.c_str());
+		tab->push_back(Line<double>(p, number));
+	}
+	else { //not a number
+		tab->push_back(Line<double>(p));
+	}
 	poliz[cnt_poliz++] = p;
 }
 
