@@ -87,12 +87,8 @@ inline void Table<T>::push_back(Line<T> tmp) {
 template<class T>
 inline void Table<T>::erase(const string & name) {
 	int pos = search_line(name);
-	//cout << "POS = " << pos << '\n';
 	if (pos == -1) throw 1;
-	for (int i = pos + 1; i < this->cnt; i++) {
-		mem[i - 1] = mem[i];
-	}
-	mem[--cnt] = Line<T>();
+	mem[pos] = mem[--cnt];
 }
 
 template<class T>
