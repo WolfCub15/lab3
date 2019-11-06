@@ -27,6 +27,12 @@ public:
 	int get_size() {
 		return this->size;
 	}
+	friend ostream &operator<<(ostream & out, Table<T> tmp) {
+		for (int i = 0; i < tmp.cnt; i++) {
+			out << "[ " << tmp[i].get_name() << ' ' << tmp[i].get_val() << " ]\n";
+		}
+		return out;
+	}
 };
 
 template<class T>
