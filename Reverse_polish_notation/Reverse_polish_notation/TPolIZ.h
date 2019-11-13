@@ -8,9 +8,6 @@ using namespace std;
 
 class TPolIZ {
 private:
-	string *lex;
-	int size_lex;
-	int cnt_lex;
 	string *poliz;
 	int size_poliz;
 	int cnt_poliz;
@@ -28,14 +25,13 @@ public:
 	TPolIZ(string s = "");
 	TPolIZ(const TPolIZ & tmp);
 	TPolIZ &operator=(const TPolIZ & tmp);
+	int poliz_count()const {
+		return this->cnt_poliz;
+	}
+	string operator[] (const int k)const;
 	void print_poliz() {
 		for (int i = 0; i < cnt_poliz; i++) {
 			cout << poliz[i] << ' ';
-		}
-	}
-	void print_lex() {
-		for (int i = 0; i < cnt_lex; i++) {
-			cout << lex[i] << '\n';
 		}
 	}
 	Table<double> get_tab() {

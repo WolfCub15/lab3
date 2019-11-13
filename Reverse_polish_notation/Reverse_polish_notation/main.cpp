@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<cstdlib>
 #include"TPolIZ.h"
 
 using namespace std;
@@ -11,6 +12,11 @@ int main() {
 	TPolIZ lol(s);
 	lol.print_poliz();
 	cout << '\n';
-	cout << lol.get_tab();
+	cout << lol.get_tab() << '\n';
+	cout << lol.poliz_count() << '\n';
+	TPolIZ kek = lol;
+	kek.print_poliz();
+	cout << '\n';
+	cout << kek.get_tab();
 	return 0;
 }

@@ -62,8 +62,10 @@ void TPolIZ::end_of_string() {
 
 void TPolIZ::make_poliz(const string & tmp) {
 	string zn = "()+-*/^ ";
+	string * lex = new string[tmp.size() + 1];
+	int cnt_lex = 0;
+	int size_lex = (int)tmp.size() + 1;
 	get_words_diff_razdel(tmp, zn, lex, cnt_lex);
-	//cnt_lex--;
 	for (int i = 0; i < cnt_lex;i++) {
 		if (lex[i].size() == 1 && lex[i] == "(") {
 			left_bracket();
@@ -71,11 +73,14 @@ void TPolIZ::make_poliz(const string & tmp) {
 		else if (lex[i].size() == 1 && lex[i] == ")") {
 			right_bracket();
 		}
-		else if (lex[i].size() == 1 && (lex[i] == "+" || lex[i] == "-" || lex[i] == "*" || lex[i] == "/" || lex[i] == "^")) {
-			operation(Line<int>(lex[i], priority->search(lex[i])));
-		}
 		else {
-			operand(lex[i]);
+			int l = priority->search_line(lex[i]);
+			if (l != -1) {
+				operation(Line<int>(lex[i], priority->operator[](l).get_val()));
+			}
+			else {
+				operand(lex[i]);
+			}
 		}
 	}
 	end_of_string();
@@ -84,60 +89,53 @@ void TPolIZ::make_poliz(const string & tmp) {
 TPolIZ::TPolIZ(string s) {
 	make_priority();
 	if (s.back() != ' ') s.push_back(' ');
-	size_lex = size_poliz = (int)s.size() + 1;
-	stack_prior = Stack<Line<int> >(size_lex);
-	lex = new string[size_lex];
-	cnt_lex = 0;
+	size_poliz = (int)s.size() + 1;
+	stack_prior = Stack<Line<int> >(size_poliz);
 	poliz = new string[size_poliz];
 	cnt_poliz = 0;
-	tab = new Table<double>(100);
+	tab = new Table<double>(size_poliz / 2);
 	make_poliz(s);
 }
 
 TPolIZ::TPolIZ(const TPolIZ & tmp) {
-	lex = new string[tmp.size_lex];
-	size_lex = tmp.size_lex;
-	cnt_lex = tmp.cnt_lex;
-	for (int i = 0; i < size_lex; i++) {
-		lex[i] = tmp.lex[i];
-	}
 	poliz = new string[tmp.size_poliz];
 	size_poliz = tmp.size_poliz;
 	cnt_poliz = tmp.cnt_poliz;
 	for (int i = 0; i < size_poliz; i++) {
 		poliz[i] = tmp.poliz[i];
 	}
-	tab = tmp.tab;
-	priority = tmp.priority;
+	tab = new Table<double>(size_poliz / 2);
+	*tab = *tmp.tab;
+	make_priority();
 	stack_prior = tmp.stack_prior;
 }
 
 TPolIZ & TPolIZ::operator=(const TPolIZ & tmp) {
 	if (this == &tmp) return *this;
-	if (size_lex != tmp.size_lex) {
-		if (size_lex) delete[] lex;
-		size_lex = tmp.size_lex;
-		lex = new string[size_lex];
-	}
-	cnt_lex = tmp.cnt_lex;
-	for (int i = 0; i < size_lex; i++) {
-		lex[i] = tmp.lex[i];
-	}
 	if (size_poliz != tmp.size_poliz) {
 		if (size_poliz) delete[] poliz;
 		size_poliz = tmp.size_poliz;
 		poliz = new string[size_poliz];
 	}
 	cnt_poliz = tmp.cnt_poliz;
-	tab = tmp.tab;
-	priority = tmp.priority;
+	for (int i = 0; i < size_poliz; i++) {
+		poliz[i] = tmp.poliz[i];
+	}
+	make_priority();
+	delete tab;
+	tab = new Table<double>(size_poliz / 2);
+	*tab = *tmp.tab;
 	stack_prior = tmp.stack_prior;
 	return *this;
 }
 
+string TPolIZ::operator[](const int k) const {
+	if (k >= 0 && k < cnt_poliz) return poliz[k];
+	throw 1;
+}
+
 TPolIZ::~TPolIZ() {
 	delete[] poliz;
-	delete[] lex;
 	delete tab;
 	delete priority;
 }
