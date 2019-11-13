@@ -38,7 +38,7 @@ void TPolIZ::right_bracket() {
 
 void TPolIZ::operand(const string & p) {
 	if (p[0] >= '0' && p[0] <= '9') {//number
-		double number = atof(p.c_str());
+		double number = stod(p.c_str());
 		tab->push_back(Line<double>(p, number));
 	}
 	else { //not a number
