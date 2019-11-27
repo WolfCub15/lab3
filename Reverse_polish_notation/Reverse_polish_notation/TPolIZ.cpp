@@ -88,7 +88,7 @@ void TPolIZ::make_poliz(const string & tmp) {
 
 TPolIZ::TPolIZ(string s) {
 	make_priority();
-	if (s.back() != ' ') s.push_back(' ');
+	if (s.size() && s.back() != ' ') s.push_back(' ');
 	size_poliz = (int)s.size() + 1;
 	stack_prior = Stack<Line<int> >(size_poliz);
 	poliz = new string[size_poliz];
