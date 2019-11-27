@@ -1,4 +1,5 @@
 #pragma once
+#include<iomanip>
 #include"Line.h"
 
 using namespace std;
@@ -29,7 +30,7 @@ public:
 	}
 	friend ostream &operator<<(ostream & out, Table<T> tmp) {
 		for (int i = 0; i < tmp.cnt; i++) {
-			out << "[ " << tmp[i].get_name() << ' ' << tmp[i].get_val() << " ]\n";
+			out << "[ " << tmp[i].get_name() << ' ' << fixed << setprecision(15) << tmp[i].get_val() << " ]\n";
 		}
 		return out;
 	}
