@@ -34,8 +34,8 @@ public:
 			cout << poliz[i] << ' ';
 		}
 	}
-	Table<double> get_tab() {
-		return *(this->tab);
+	Table<double>* get_tab() {
+		return tab;
 	}
 	~TPolIZ();
 };
