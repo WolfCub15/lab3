@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Arithmetic.h" />
     <ClInclude Include="Line.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="TPolIZ.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Arithmetic.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TPolIZ.cpp" />
   </ItemGroup>
