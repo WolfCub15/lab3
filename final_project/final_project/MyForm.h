@@ -102,7 +102,6 @@ namespace finalproject {
 			this->Grid->ClipboardCopyMode = System::Windows::Forms::DataGridViewClipboardCopyMode::Disable;
 			this->Grid->ColumnHeadersHeight = 30;
 			this->Grid->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
-			this->Grid->ColumnHeadersVisible = false;
 			this->Grid->Location = System::Drawing::Point(12, 50);
 			this->Grid->MultiSelect = false;
 			this->Grid->Name = L"Grid";
@@ -172,6 +171,8 @@ namespace finalproject {
 			int cnt = ans->get_poliz()->get_tab()->get_count();
 			Grid->RowCount = cnt;
 			Grid->ColumnCount = 2;
+			Grid->Columns[0]->HeaderText = "NAME";
+			Grid->Columns[1]->HeaderText = "VALUE";
 			for (int i = 0; i < cnt; i++) {
 				Grid->Rows[i]->Cells[0]->Value = msclr::interop::marshal_as<String^>(ans->get_poliz()->get_tab()->operator[](i).get_name());
 				Grid->Rows[i]->Cells[0]->ReadOnly = true;
