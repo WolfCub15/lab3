@@ -44,6 +44,7 @@ namespace finalproject {
 	private: System::Windows::Forms::Button^  set_tab_but;
 	private: System::Windows::Forms::Button^  calc_but;
 	private: System::Windows::Forms::TextBox^  ans_box;
+	private: System::Windows::Forms::TextBox^  poliz_box;
 	protected:
 
 	protected:
@@ -68,6 +69,7 @@ namespace finalproject {
 			this->set_tab_but = (gcnew System::Windows::Forms::Button());
 			this->calc_but = (gcnew System::Windows::Forms::Button());
 			this->ans_box = (gcnew System::Windows::Forms::TextBox());
+			this->poliz_box = (gcnew System::Windows::Forms::TextBox());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->Grid))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -132,16 +134,24 @@ namespace finalproject {
 			// 
 			// ans_box
 			// 
-			this->ans_box->Location = System::Drawing::Point(260, 226);
+			this->ans_box->Location = System::Drawing::Point(260, 264);
 			this->ans_box->Name = L"ans_box";
 			this->ans_box->Size = System::Drawing::Size(300, 20);
 			this->ans_box->TabIndex = 5;
+			// 
+			// poliz_box
+			// 
+			this->poliz_box->Location = System::Drawing::Point(260, 71);
+			this->poliz_box->Name = L"poliz_box";
+			this->poliz_box->Size = System::Drawing::Size(300, 20);
+			this->poliz_box->TabIndex = 6;
 			// 
 			// MyForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(572, 377);
+			this->Controls->Add(this->poliz_box);
 			this->Controls->Add(this->ans_box);
 			this->Controls->Add(this->calc_but);
 			this->Controls->Add(this->set_tab_but);
@@ -182,6 +192,8 @@ namespace finalproject {
 			str = ans->get_poliz()->print_poliz();
 			//MessageBox::Show(msclr::interop::marshal_as<String^>(str));
 			start_text_box->ReadOnly = true;
+			poliz_box->Text = msclr::interop::marshal_as<String^>(str);
+			poliz_box->ReadOnly = true;
 			draw_grid();
 		}
 		System::Void set_tab_but_Click(System::Object^  sender, System::EventArgs^  e) {
