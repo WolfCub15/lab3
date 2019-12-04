@@ -3,10 +3,10 @@
 #include"Stack.h"
 class Arithmetic {
 private:
-	string str;
+	std::string str;
 	TPolIZ* poliz;
 public:
-	Arithmetic(string kek);
+	Arithmetic(std::string kek = "");
 	Arithmetic(const Arithmetic & tmp);
 	Arithmetic &operator=(const Arithmetic & tmp);
 	~Arithmetic() {};

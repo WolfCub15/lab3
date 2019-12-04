@@ -1,6 +1,6 @@
 #include "Arithmetic.h"
 #include<vector>
-Arithmetic::Arithmetic(string kek) {
+Arithmetic::Arithmetic(std::string kek) {
 	str = kek;
 	poliz = new TPolIZ(kek);
 }
